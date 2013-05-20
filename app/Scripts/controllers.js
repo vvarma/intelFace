@@ -1,4 +1,4 @@
-intelApp.controller('MainController',function($scope,instrumentFac){
+var cntrl1=intelApp.controller('MainController',function($scope,instrumentFac){
     $scope.set=false
     console.log("done1")
   $scope.load =function(){
@@ -19,3 +19,7 @@ intelApp.controller('MainController',function($scope,instrumentFac){
 
 
 })
+
+function MyCtrl1() {}
+MyCtrl1.$inject = [];
+

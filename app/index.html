@@ -7,6 +7,9 @@
     <script src="Scripts/angular.js "></script>
     <script src="Scripts/angular-resource.js "></script>
 
+    <!--flot-->
+    <script src="flot/jquery.js"></script>
+    <script src="flot/jquery.flot.js"></script>
     <!-- page specific plugin scripts -->
     <script src="Scripts/module.js"></script>
     <script src="Scripts/factories.js"></script>
@@ -17,7 +20,11 @@
 Symbol Name: <input type="text" ng-model="input" placeholder="enter symbol name">
 <button ng-click="load()">Load</button>
 {{instrumentData.symbolName}}
+<br>
+<a href="#/chart">plot</a>
 
-
+<div >
+    <chart ng-model='instrumentData'></chart>
+</div>
 </body>
 </html>
