@@ -1,0 +1,17 @@
+<!-- HTML -->
+<div id="example-section2">
+    <div id="flotcontainer" style="width: 600px;height:150px; text-align: center; margin:0 auto;"></div>
+</div> <!-- Javascript -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="http://www.pureexample.com/js/flot/excanvas.min.js"></script>
+<script src="http://www.pureexample.com/js/flot/jquery.flot.min.js"></script>
+<script type="text/javascript"> $(document).ready(function () {
+    var data = [];
+    for (var i = 0; i < 10; i += 0.5) {
+        data.push([i, Math.tan(i)]);
+    }
+    var options = { series: { lines: { show: true }, points: { show: true } } };
+    $.plot($("#example-section2 #flotcontainer"), [
+        { data: data, points: {symbol: "circle"} }
+    ], options);
+}); </script>

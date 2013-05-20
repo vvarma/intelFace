@@ -12,14 +12,14 @@ var cntrl1=intelApp.controller('MainController',function($scope,instrumentFac){
        data.$then(function(){
            console.log("yes + " + data.symbolName)
            $scope.instrumentData=data;
+           var options = { series: { lines: { show: true }, points: { show: true } } };
+           $.plot($("#example-section2 #flotcontainer"), [
+               { data: data, points: {symbol: "circle"} }
+           ], options);
        })
    }
 
-
-
-
 })
 
-function MyCtrl1() {}
-MyCtrl1.$inject = [];
+
 
