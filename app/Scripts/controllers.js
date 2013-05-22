@@ -4,7 +4,7 @@ var cntrl1=intelApp.controller('MainController',function($scope,instrumentFac){
   $scope.load =function(){
        console.log("done21")
        $scope.set=true
-       var data=instrumentFac.get({which:"Close",symbol:$scope.input},function($scope){
+       var data=instrumentFac.get({which:"CLOSE",symbol:$scope.input},function($scope){
            console.log('success, got data');
        }, function(err){
            alert('request failed');
@@ -38,10 +38,17 @@ var cntrl1=intelApp.controller('MainController',function($scope,instrumentFac){
           var charted =[];
           var i=0;
           for(date=new Date(startDate.getTime());date<endDate;date.setDate(date.getDate()+1)){
-              console.log("start date "+ date )
-              if($scope.instrumentData.priceList[i]!=null)
-                  charted.push([new Date(date.getTime()),$scope.instrumentData.priceList[i]]);
-              i++;
+             // console.log("start date "+ date )
+              var dateTemp=Date.parse($scope.instrumentData.priceList[i].timeStamp);
+              if(dateTemp.valueOf()==date.valueOf()){
+                  charted.push([new Date(date.getTime()),$scope.instrumentData.priceList[i].closePrice]);
+                  i++;
+              }else{
+                  charted.push([new Date(date.getTime()),null]);
+              }
+
+
+
           }
 
 

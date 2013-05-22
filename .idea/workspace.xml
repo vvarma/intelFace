@@ -4,10 +4,10 @@
     <list default="true" id="fdba6d80-d2a6-4144-a4b9-bdec5fe590e7" name="Default" comment="" />
     <ignored path="intelFace.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/directive.js" changelist="fdba6d80-d2a6-4144-a4b9-bdec5fe590e7" time="1369072900492" ignored="false" />
-    <file path="/chartExample.html" changelist="fdba6d80-d2a6-4144-a4b9-bdec5fe590e7" time="1369072351047" ignored="false" />
-    <file path="/index.html" changelist="fdba6d80-d2a6-4144-a4b9-bdec5fe590e7" time="1369071801121" ignored="false" />
     <file path="/Dummy.txt" changelist="fdba6d80-d2a6-4144-a4b9-bdec5fe590e7" time="1369070842890" ignored="false" />
+    <file path="/index.html" changelist="fdba6d80-d2a6-4144-a4b9-bdec5fe590e7" time="1369071801121" ignored="false" />
+    <file path="/chartExample.html" changelist="fdba6d80-d2a6-4144-a4b9-bdec5fe590e7" time="1369072351047" ignored="false" />
+    <file path="/directive.js" changelist="fdba6d80-d2a6-4144-a4b9-bdec5fe590e7" time="1369072900492" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,17 +31,24 @@
         <entry file="file://$PROJECT_DIR$/app/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state line="29" column="0" selection-start="926" selection-end="926" vertical-scroll-proportion="-18.961538">
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controllers.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="controllers.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Scripts/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="37" selection-start="807" selection-end="807" vertical-scroll-proportion="0.5108173">
+            <state line="6" column="49" selection-start="254" selection-end="254" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="factories.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Scripts/factories.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="67" selection-start="121" selection-end="121" vertical-scroll-proportion="0.020631067">
               <folding />
             </state>
           </provider>
@@ -62,17 +69,15 @@
         <option value="$PROJECT_DIR$/app/partials/plotInstrument.html" />
         <option value="$PROJECT_DIR$/app/Scripts/directive.js" />
         <option value="$PROJECT_DIR$/app/Scripts/module.js" />
-        <option value="$PROJECT_DIR$/app/Scripts/factories.js" />
         <option value="$PROJECT_DIR$/app/index.html" />
         <option value="$PROJECT_DIR$/app/Scripts/controllers.js" />
+        <option value="$PROJECT_DIR$/app/Scripts/factories.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-4" />
-    <option name="y" value="-4" />
-    <option name="width" value="1288" />
-    <option name="height" value="1004" />
+    <option name="width" value="1280" />
+    <option name="height" value="996" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -100,12 +105,23 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="intelFace" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="intelFace" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="intelFace" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -160,7 +176,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -196,13 +211,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1288" height="1004" extended-state="6" />
+    <frame x="0" y="0" width="1280" height="996" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24900557" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2506005" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
@@ -279,16 +294,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Scripts/module.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="90" selection-start="220" selection-end="220" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="3" column="90" selection-start="220" selection-end="220" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/partials/plotInstrument.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="5" selection-start="6" selection-end="6" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="1" column="5" selection-start="6" selection-end="6" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Scripts/controllers.js">
@@ -301,9 +312,7 @@
     <entry file="file://$PROJECT_DIR$/app/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="27" selection-start="589" selection-end="589" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -317,9 +326,7 @@
     <entry file="file://$PROJECT_DIR$/app/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="7" selection-start="81" selection-end="81" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -335,9 +342,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/partials/plotInstrument.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="1" selection-end="1" vertical-scroll-proportion="-0.65384614">
-          <folding />
-        </state>
+        <state line="1" column="0" selection-start="1" selection-end="1" vertical-scroll-proportion="-0.65384614" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/samp.html">
@@ -347,16 +352,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Scripts/module.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="51" selection-start="51" selection-end="51" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Scripts/factories.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="80" selection-start="134" selection-end="134" vertical-scroll-proportion="0.020432692">
-          <folding />
-        </state>
+        <state line="0" column="51" selection-start="51" selection-end="51" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/ECMAScript.js2">
@@ -366,18 +362,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/index.html">
+    <entry file="file://$PROJECT_DIR$/app/Scripts/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="0" selection-start="926" selection-end="926" vertical-scroll-proportion="-18.961538">
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state line="6" column="49" selection-start="254" selection-end="254" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Scripts/controllers.js">
+    <entry file="file://$PROJECT_DIR$/app/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="37" selection-start="807" selection-end="807" vertical-scroll-proportion="0.5108173">
+        <state line="29" column="0" selection-start="926" selection-end="926" vertical-scroll-proportion="-18.961538">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Scripts/factories.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="67" selection-start="121" selection-end="121" vertical-scroll-proportion="0.020631067">
           <folding />
         </state>
       </provider>
