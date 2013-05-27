@@ -15,22 +15,28 @@ var cntrl1=intelApp.controller('MainController',function($scope,instrumentFac){
 
            $scope.instrumentData=data;
            var chartData=dataPrep($scope);
-           var options = {
-               series:{
-                   lines:{
-                       show:true
-                   }
-               },
-               xaxis:{
-                   mode:"time",
-                   timeformat: "%Y/%m",
-                   minTickSize: [1, "month"]
-               }
-           };
-           $.plot($("#example-section2 #flotcontainer"), [
-               { data: chartData }
-           ], options);
-       })
+
+
+      $("#example-section2 #flotcontainer").highcharts('StockChart', {
+
+
+          rangeSelector : {
+              selected : 1
+          },
+
+          title : {
+              text : $scope.instrumentData.symbolName+' Stock Price'
+          },
+
+          series : [{
+              name : $scope.instrumentData.symbolName,
+              data : chartData,
+              tooltip: {
+                  valueDecimals: 2
+              }
+          }]
+      });
+  });
       var dataPrep=function($scope){
           var startDate=new Date(Date.parse($scope.instrumentData.startDate));
           var endDate=new Date(Date.parse($scope.instrumentData.endDate));
@@ -41,10 +47,10 @@ var cntrl1=intelApp.controller('MainController',function($scope,instrumentFac){
              // console.log("start date "+ date )
               var dateTemp=Date.parse($scope.instrumentData.priceList[i].timeStamp);
               if(dateTemp.valueOf()==date.valueOf()){
-                  charted.push([new Date(date.getTime()),$scope.instrumentData.priceList[i].closePrice]);
+                  charted.push([date.getTime(),$scope.instrumentData.priceList[i].closePrice]);
                   i++;
               }else{
-                  charted.push([new Date(date.getTime()),null]);
+                  charted.push([date.getUTCDate(),null]);
               }
 
 
