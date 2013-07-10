@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="intel">
+<head>
+    <title>Intel Trader</title>
+
+    <!-- angular -->
+    <script src="Scripts/angular.js "></script>
+    <script src="Scripts/angular-resource.js "></script>
+
+    <!--flot-->
+    <script src="flot/jquery.js"></script>
+    <script src="flot/jquery.flot.js"></script>
+    <script src="flot/jquery.flot.time.js"></script>
+    <script src="http://code.highcharts.com/stock/highstock.js"></script>
+    <!-- page specific plugin scripts -->
+    <script src="Scripts/module.js"></script>
+    <script src="Scripts/factories.js"></script>
+    <script src="Scripts/controllers2.js"></script>
+
+</head>
+<body ng-controller="MainController"  >
+
+<div id="ToolBar" >
+    <span><b>IntelTrader</b></span>
+
+   <span id="portfolioSelect"> <select ng-model="portfolioSelect" ng-options="port for port in portfolios" ng-change="getPortfolio()"/></span>
+
+</div>
+
+<div >
+    Symbol Name: <input type="text" ng-model="input" placeholder="enter symbol name">
+    <button ng-click="load()">Load</button>
+</div>
+<div id="view2" hidden="true">
+    <p>Portfolio : {{ portfolio.portfolioName }}</p>
+    <p>Investments :</p>
+    <ul>
+        <li ng-repeat="investment in portfolio.investmentList"> {{ investment.symbolName }} </li>
+    </ul>
+
+</div>
+
+<div id="view1"  hidden="true">
+
+    <p>Symbol Loaded :{{instrumentData.symbolName}}</p>
+   <form ng-submit="plot()">
+
+        <button type="submit">PLOT</button>
+    </form>
+
+</div>
+<div id="chartContainer">
+    <div id="macdChart" style="width: 1000px;height:1000px; text-align: center; margin:0 auto;"></div>
+</div>
+</body>
+</html>

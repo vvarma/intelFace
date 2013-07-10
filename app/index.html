@@ -1,33 +1,69 @@
 <!DOCTYPE html>
-<html ng-app="intel">
+<html lang="en" ng-app="intel">
 <head>
+    <meta charset="utf-8">
     <title>Intel Trader</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shades of gunmetal gray.">
+    <meta name="author" content="Thomas Park">
 
-    <!-- angular -->
-    <script src="Scripts/angular.js "></script>
-    <script src="Scripts/angular-resource.js "></script>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-    <!--flot-->
-    <script src="flot/jquery.js"></script>
-    <script src="flot/jquery.flot.js"></script>
-    <script src="flot/jquery.flot.time.js"></script>
-    <script src="http://code.highcharts.com/stock/highstock.js"></script>
-    <!-- page specific plugin scripts -->
-    <script src="Scripts/module.js"></script>
-    <script src="Scripts/factories.js"></script>
-    <script src="Scripts/controllers.js"></script>
+    <link href="layout/css/bootstrap.min.css" rel="stylesheet">
+    <link href="layout/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="layout/css/font-awesome.min.css" rel="stylesheet">
+    <link href="layout/css/bootswatch.css" rel="stylesheet">
+
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-23019901-1']);
+        _gaq.push(['_setDomainName', "bootswatch.com"]);
+        _gaq.push(['_setAllowLinker', true]);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
 
 </head>
-<body ng-controller="MainController">
-Symbol Name: <input type="text" ng-model="input" placeholder="enter symbol name">
-<button ng-click="load()">Load</button>
-{{instrumentData.symbolName}}
-<br>
-<a href="#/chart">plot</a>
 
-<div id="chartContainer">
-    <div id="macdChart" style="width: 1000px;height:500px; text-align: center; margin:0 auto;"></div>
-</div>
+<body class="preview" id="top" data-spy="scroll" data-target=".subnav" data-offset="80" >
+
+<div ng-view></div>
+
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="layout/js/jquery.smooth-scroll.min.js"></script>
+<script src="layout/js/bootstrap.min.js"></script>
+<script src="layout/js/bootswatch.js"></script>
+
+<!-- angular -->
+<script src="Scripts/angular.js "></script>
+<script src="Scripts/angular-resource.js "></script>
+
+<!--flot-->
+<script src="flot/jquery.js"></script>
+<script src="flot/jquery.flot.js"></script>
+<script src="flot/jquery.flot.time.js"></script>
+<script src="http://code.highcharts.com/stock/highstock.js"></script>
+<!-- page specific plugin scripts -->
+<script src="Scripts/module.js"></script>
+<script src="Scripts/factories.js"></script>
+<script src="Scripts/controllers2.js"></script>
+
 
 </body>
 </html>

@@ -1,0 +1,27 @@
+<div class="container">
+    <legend>Portfolio
+        <button class="btn" ng-click="loadPortfolios()">Load</button>
+    </legend>
+
+        <fieldset id="portSelect" hidden="true">
+
+            <div class="control-group">
+                <label class="control-label" for="selectPort">Select Portfolio</label>
+
+                <div class="controls">
+                    <select id="selectPort" ng-model="portfolioSelect" ng-options="port for port in portfolios.names"/>
+                    <!--<select id="selectPort" ng-model="sele">
+                        <option>"abc"</option>
+                        <option>"abc"</option>
+                        <option>"abc"</option>
+                    </select>-->{{ sele }}
+                </div>
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-primary" ng-click="getPortfolio()">Get Portfolio</button>
+                <a class="btn btn-primary" href="#/">Go</a>
+            </div>
+        </fieldset>
+
+
+</div>

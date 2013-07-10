@@ -1,4 +1,4 @@
-var cntrl1 = intelApp.controller('MainController', function ($scope, instrumentFac) {
+var cntrl1 = intelApp.controller('ChartController', function ($scope, instrumentFac) {
     $scope.set = false
     console.log("done1")
     $scope.load = function () {
@@ -16,7 +16,14 @@ var cntrl1 = intelApp.controller('MainController', function ($scope, instrumentF
             var macdChartData =[];
             var macdSignalData=[];
             var macdHistData=[];
+            var rsiData=[];
+            var bbandUpperData=[];
+            var bbandLowerData=[];
+            var bbandMiddleData=[];
+
             macdDataPrep($scope,macdChartData,macdHistData,macdSignalData);
+            rsiDataPrep($scope,rsiData);
+            bbandDataPrep($scope,bbandUpperData,bbandLowerData,bbandMiddleData);
             $("#chartContainer #macdChart").highcharts('StockChart', {
 
                 rangeSelector:{
@@ -35,6 +42,22 @@ var cntrl1 = intelApp.controller('MainController', function ($scope, instrumentF
                     {
                         title:{
                             text:"MACD"
+                        },
+                        top: 300,
+                        height: 100,
+                        offset: 0
+                    },
+                    {
+                        title:{
+                            text:"RSI"
+                        },
+                        top: 300,
+                        height: 100,
+                        offset: 0
+                    },
+                    {
+                        title:{
+                            text:"BBAND"
                         },
                         top: 300,
                         height: 100,
@@ -71,7 +94,45 @@ var cntrl1 = intelApp.controller('MainController', function ($scope, instrumentF
                         },
                         yAxis: 1,
                         type:'column'
-                    }]
+                    },
+                    {
+                        name:$scope.instrumentData.symbolName + " RSI",
+                        data:rsiData,
+                        tooltip:{
+                            valueDecimals:2
+                        },
+                        yAxis: 2,
+                        type:'column'
+                    },
+                    {
+                        name:$scope.instrumentData.symbolName + " BBandUpper",
+                        data:bbandUpperData,
+                        tooltip:{
+                            valueDecimals:2
+                        },
+                        yAxis: 3,
+                        type:'column'
+                    },
+                    {
+                        name:$scope.instrumentData.symbolName + " BBandMiddle",
+                        data:bbandMiddleData,
+                        tooltip:{
+                            valueDecimals:2
+                        },
+                        yAxis: 3,
+                        type:'column'
+                    },
+                    {
+                        name:$scope.instrumentData.symbolName + " BBandLower",
+                        data:bbandLowerData,
+                        tooltip:{
+                            valueDecimals:2
+                        },
+                        yAxis: 3,
+                        type:'column'
+                    }
+
+                ]
 
             });
         });
@@ -109,6 +170,40 @@ var cntrl1 = intelApp.controller('MainController', function ($scope, instrumentF
                 }
             }
 
+        }
+        var rsiDataPrep = function ($scope,rsiData) {
+            var startDate = new Date(Date.parse($scope.instrumentData.startDate));
+            var endDate = new Date(Date.parse($scope.instrumentData.endDate));
+            //endDate.setFullYear(startDate.getFullYear(),startDate.getMonth(),startDate.getDate()+3);
+            var charted = [];
+            var i = 0;
+            for (date = new Date(startDate.getTime()); date < endDate; date.setDate(date.getDate() + 1)) {
+                // console.log("start date "+ date )
+                var dateTemp = Date.parse($scope.instrumentData.priceList[i].timeStamp);
+                if (dateTemp.valueOf() == date.valueOf()) {
+                    rsiData.push([date.getTime(), $scope.instrumentData.extras['RSI'][i]]);
+                    i++;
+                }
+            }
+            return charted;
+        }
+        var bbandDataPrep = function ($scope,bbandUpperData,bbandLowerData,bbandMiddleData) {
+            var startDate = new Date(Date.parse($scope.instrumentData.startDate));
+            var endDate = new Date(Date.parse($scope.instrumentData.endDate));
+            //endDate.setFullYear(startDate.getFullYear(),startDate.getMonth(),startDate.getDate()+3);
+            var charted = [];
+            var i = 0;
+            for (date = new Date(startDate.getTime()); date < endDate; date.setDate(date.getDate() + 1)) {
+                // console.log("start date "+ date )
+                var dateTemp = Date.parse($scope.instrumentData.priceList[i].timeStamp);
+                if (dateTemp.valueOf() == date.valueOf()) {
+                    bbandUpperData.push([date.getTime(), $scope.instrumentData.extras['BBANDUpper'][i]]);
+                    bbandLowerData.push([date.getTime(), $scope.instrumentData.extras['BBANDLower'][i]]);
+                    bbandMiddleData.push([date.getTime(), $scope.instrumentData.extras['BBANDMiddle'][i]]);
+                    i++;
+                }
+            }
+            return charted;
         }
     }
 
