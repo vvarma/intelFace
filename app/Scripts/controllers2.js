@@ -6,59 +6,61 @@
  * To change this template use File | Settings | File Templates.
  */
 
-var cntrl1 = intelApp.controller('MainController', function ($scope, instrumentFac,portfoliosFac,portFac,$location) {
+
+var cntrl1 = intelApp.controller('MainController', function ($scope, instrumentFac, portfoliosFac, portFac) {
     $scope.set = false;
-    $scope.bla="phiss";
+    $scope.bla = "phiss";
     console.log("done1");
-    $scope.loadPortfolios = function () {
+    var loadPortfolios = function () {
         console.log("i am called");
-        var data=portfoliosFac.get({}, function () {
+        var data = portfoliosFac.get({}, function () {
             console.log('success, got data');
         }, function () {
             alert('request failed');
         });
-        console.log("here 1")
-        data.$then(function(){
-
-            console.log("data retrieved" + data.portfolio)
-            var argh=[];
-
-            for(var i=0;i<data.portfolio.length;i++){
-                argh[i]=data.portfolio[i];
-                console.log(argh[i])
+        console.log("here 1");
+        data.$then(function () {
+            console.log("data retrieved" + data.portfolio);
+            var argh = [];
+            for (var i = 0; i < data.portfolio.length; i++) {
+                argh[i] = data.portfolio[i];
+                console.log(argh[i]);
             }
-            var portfolios={
+            var portfolios = {
                 names:argh
-            }
-            $scope.bla="blah"
-            $scope.portfolios=portfolios;
-            console.log($scope.portfolios.names)
-            $("#portSelect").show();
-
+            };
+            $scope.bla = "blah";
+            $scope.portfolios = portfolios;
+            console.log($scope.portfolios.names);
         });
-
+        return "done";
     };
-    $scope.lol=function(){
-        console.log("lol" + $scope.portfolioSelect)
-    }
-
-    $scope.getPortfolio=function(){
-        console.log("Portfolio Selected" + $scope.portfolioSelect);
-        var data=portFac.get({portfolio:$scope.portfolioSelect}, function () {
+    loadPortfolios();
+    $scope.lol = function () {
+        console.log("lol" + $scope.sel);
+    };
+    $scope.getPortfolio = function () {
+        console.log("Portfolio Selected" + $scope.selectPortfolio);
+        var data = portFac.get({portfolio:$scope.selectPortfolio}, function () {
             console.log('success, got data');
         }, function () {
             alert('request failed');
-        })
-        data.$then(function(){
-            $scope.portfolio=data;
-            console.log("yo "+ $scope.portfolio.investmentList[0].symbolName)
+        });
+        data.$then(function () {
+            $scope.portfolio = data;
+            console.log("yo " + $scope.portfolio.investmentList[0].symbolName);
 
         })
-
 
     };
-    $scope.load = function () {
-        console.log("done21")
+    $scope.plotInvestment=function(investment){
+        console.log("PLotting investment" + investment.symbolName)
+        $scope.input=investment.symbolName;
+        $scope.loadInstrument();
+
+    }
+    $scope.loadInstrument = function () {
+        console.log("done21");
         $scope.set = true;
         var data = instrumentFac.get({symbol:$scope.input}, function () {
             console.log('success, got data');
@@ -66,13 +68,13 @@ var cntrl1 = intelApp.controller('MainController', function ($scope, instrumentF
             alert('request failed');
         });
         data.$then(function () {
-            console.log("yes + " + data)
+            console.log("yes + " + data);
             $scope.instrumentData = data;
-
+            $scope.plot();
         });
-        $("#view1").show();
+
     };
-    $scope.plot=function(){
+    $scope.plot = function () {
         var chartData = dataPrep($scope);
         $("#chartContainer #macdChart").highcharts('StockChart', {
 
@@ -87,8 +89,9 @@ var cntrl1 = intelApp.controller('MainController', function ($scope, instrumentF
                     title:{
                         text:"Price"
                     },
-                    height: 200
-                }],
+                    height:200
+                }
+            ],
             series:[
                 {
                     name:$scope.instrumentData.symbolName + " Price",
@@ -96,21 +99,20 @@ var cntrl1 = intelApp.controller('MainController', function ($scope, instrumentF
                     tooltip:{
                         valueDecimals:2
                     },
-                    yAxis: 0
-                } ]
+                    yAxis:0
+                }
+            ]
 
         });
-    }
+    };
     /*console.log("ayyyo" +$scope.portfolioSelect);
-    if($scope.portfolioSelect !="" &&$scope.portfolioSelect!="unselect"){
-        console.log("dai" +$scope.portfolioSelect);
-        getPortfolio();
-    }else{
-        console.log("no dai"+$scope.portfolioSelect +" p")
-    }*/
-
+     if($scope.portfolioSelect !="" &&$scope.portfolioSelect!="unselect"){
+     console.log("dai" +$scope.portfolioSelect);
+     getPortfolio();
+     }else{
+     console.log("no dai"+$scope.portfolioSelect +" p")
+     }*/
 });
-
 var dataPrep = function ($scope) {
     var startDate = new Date(Date.parse($scope.instrumentData.startDate));
     var endDate = new Date(Date.parse($scope.instrumentData.endDate));
@@ -126,5 +128,5 @@ var dataPrep = function ($scope) {
         }
     }
     return charted;
-}
+};
 

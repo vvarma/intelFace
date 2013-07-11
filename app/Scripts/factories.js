@@ -1,12 +1,9 @@
 intelApp.factory("instrumentFac",function($resource){
-    var resource=$resource('http://localhost\\:8080/analyser/load/:symbol');
-    return resource;
-})
+    return $resource('http://localhost\\:8080/analyser/load/:symbol');
+});
 intelApp.factory("portfoliosFac",function($resource){
-    var resource=$resource('http://localhost\\:8080/portfolio/listAll');
-    return resource;
-})
+    return $resource('http://localhost\\:8080/portfolio/listAll');
+});
 intelApp.factory("portFac",function($resource){
-    var resource=$resource('http://localhost\\:8080/portfolio/load/:portfolio');
-    return resource;
-})
+    return $resource('http://localhost\\:8080/portfolio/load/:portfolio');
+});
