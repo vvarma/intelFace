@@ -2,7 +2,7 @@
 <html ng-app="trader">
 <head>
     <title>{{ title }}</title>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -20,18 +20,25 @@
     <!--Modules Controllers and Factories-->
     <script src="Scripts/part/module.js"></script>
 </head>
-<body ng-controller="cntrl1" ng-init="onPageLoad()" >
+<body ng-controller="cntrl1" ng-init="onPageLoad()">
 <div id="dateSelect">
 
-    <p>Set Today: <input type="text" ng-model="today" datepicker /></p>
+    <p>Set Today: <input type="text" ng-model="today" datepicker/></p>
     <label>Roll :<input type="checkbox" ng-model="setRoll"></label>
     <button ng-click="setToday()">Set</button>
 </div>
 
 <div id="portfolio">
     <div id="portfolioView">
-        <a ng-click="showPortfolio()">Portfolio : {{ selectedPortfolio.portfolioName }}</a>
         <!-- <span>Strategy : {{ selectedPortfolio.strategy }}</span>-->
+        <a ng-click="showPortfolio()">Portfolio : {{ selectedPortfolio.portfolioName }}</a>
+
+        <div>
+            Strategy :
+            <ul>
+                <li ng-repeat="strategy in selectedPortfolio.desc">{{ strategy }}</li>
+            </ul>
+        </div>
     </div>
     <span id="portfolioSelect">
         <label>Select Portfolio<select ng-model="selectedPortfolioName"
@@ -75,14 +82,16 @@
                 <th>Symbol Name</th>
                 <th>Quantity</th>
                 <th>CurrentPrice</th>
+                <th>PnL</th>
 
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="investment in selectedPortfolio.investmentList">
-                    <td><a ng-click="forInvestment(investment.symbolName)">{{ investment.symbolName }}</a></td>
-                    <td>{{ investment.quantity }}</td>
-                    <td>{{ investment.currentPrice.closePrice }}</td>
+                <td><a ng-click="forInvestment(investment.symbolName)">{{ investment.symbolName }}</a></td>
+                <td>{{ investment.quantity }}</td>
+                <td>{{ investment.currentPrice.closePrice }}</td>
+                <td>{{ investment.pnl }}</td>
 
                 </td>
             </tr>
@@ -101,22 +110,22 @@
     <div id="transactionView" ng-hide="boolPlotOrTransaction">
         <table>
             <thead>
-            <tr><th>Transaction Date</th>
+            <tr>
+                <th>Transaction Date</th>
                 <th>Quantity</th>
                 <th>Price</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="transaction in selectedInvestment.transactionList">
-            <td>{{ transaction.transactionDate }}</td>
-            <td>{{ transaction.quantity }}</td>
-            <td>{{ transaction.transactionPrice.closePrice }}</td>
+                <td>{{ transaction.transactionDate }}</td>
+                <td>{{ transaction.quantity }}</td>
+                <td>{{ transaction.transactionPrice.closePrice }}</td>
             </tr>
             </tbody>
         </table>
     </div>
 </div>
-
 
 
 </body>

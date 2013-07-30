@@ -25,37 +25,37 @@ var traderApp = angular.module("trader", ['ngResource']).
 });;
 
 traderApp.factory("portfoliosFac", function ($resource) {
-    return $resource('http://localhost\\:8080/portfolio/listAll');
+    return $resource('http://localhost\\:8080/intelTrader-1.0-SNAPSHOT/portfolio/listAll');
 });
 traderApp.factory("portfolioFac", function ($resource) {
-    return $resource('http://localhost\\:8080/portfolio/load/:portfolio');
+    return $resource('http://localhost\\:8080/intelTrader-1.0-SNAPSHOT/portfolio/load/:portfolio');
 });
 traderApp.factory("createPortfolioFac", function ($resource) {
-    return $resource('http://localhost\\:8080/portfolio/create/:portfolio/:strategy/:strategyArr');
+    return $resource('http://localhost\\:8080/intelTrader-1.0-SNAPSHOT/portfolio/create/:portfolio/:strategy/:strategyArr');
 });
 traderApp.factory("legalIndicatorsFac", function ($resource) {
-    return $resource('http://localhost\\:8080/analyser/legalIndicators');
+    return $resource('http://localhost\\:8080/intelTrader-1.0-SNAPSHOT/analyser/legalIndicators');
 });
 traderApp.factory("addInvestmentFac", function ($resource) {
-    return $resource('http://localhost\\:8080/portfolio/addInvestment/:portfolioName/:symbolName');
+    return $resource('http://localhost\\:8080/intelTrader-1.0-SNAPSHOT/portfolio/addInvestment/:portfolioName/:symbolName');
 });
 traderApp.factory("instrumentFac",function($resource){
-    return $resource('http://localhost\\:8080/analyser/load/:symbol');
+    return $resource('http://localhost\\:8080/intelTrader-1.0-SNAPSHOT/analyser/load/:symbol');
 });
 traderApp.factory("globalGetTimeFac", function ($resource) {
-    return $resource('http://localhost\\:8080/global/getTime');
+    return $resource('http://localhost\\:8080/intelTrader-1.0-SNAPSHOT/global/getTime');
 });
 traderApp.factory("globalSetTimeFac", function ($resource) {
-    return $resource('http://localhost\\:8080/global/setTime/:today');
+    return $resource('http://localhost\\:8080/intelTrader-1.0-SNAPSHOT/global/setTime/:today');
 });
 traderApp.factory("portfolioUpdateFac", function ($resource) {
-    return $resource('http://localhost\\:8080/portfolio/updatePortfolio/:portfolioName');
+    return $resource('http://localhost\\:8080/intelTrader-1.0-SNAPSHOT/portfolio/updatePortfolio/:portfolioName');
 });
-traderApp.factory("testPortfolioUpdateFac", function ($resource) {
-    return $resource('http://localhost\\:8080/test/portfolio/updatePortfolio/:portfolioName');
+traderApp.factory("portfolioRollFac", function ($resource) {
+    return $resource('http://localhost\\:8080/intelTrader-1.0-SNAPSHOT/test/portfolio/rollPortfolio/:portfolioName/:rollDate');
 });
 
-var cntrl1 = traderApp.controller("cntrl1", function ($scope, portfoliosFac, portfolioFac,createPortfolioFac,legalIndicatorsFac,addInvestmentFac,instrumentFac,globalGetTimeFac,globalSetTimeFac,portfolioUpdateFac,testPortfolioUpdateFac) {
+var cntrl1 = traderApp.controller("cntrl1", function ($scope, portfoliosFac, portfolioFac,createPortfolioFac,legalIndicatorsFac,addInvestmentFac,instrumentFac,globalGetTimeFac,globalSetTimeFac,portfolioUpdateFac,portfolioRollFac) {
 
     $scope.onPageLoad = function () {
         $scope.title = "INTEL TRADER";
@@ -126,18 +126,19 @@ var cntrl1 = traderApp.controller("cntrl1", function ($scope, portfoliosFac, por
         })
 
     };
+    function rollPortfolio($scope){
+        console.log("Set Roll")
+        var data=portfolioRollFac.get({portfolioName:$scope.selectedPortfolioName,rollDate:$scope.today},function(){
+            console.log("update portfolio complete");
+        },function(){
+            alert("update not so successful");
+        })
+        data.$then(function(){
+            $scope.loadPortfolio();
+        })
+    }
     function updatePortfolio($scope){
-        if($scope.setRoll){
-            console.log("Set Roll")
-            var data=testPortfolioUpdateFac.get({portfolioName:$scope.selectedPortfolioName},function(){
-                console.log("update portfolio complete");
-            },function(){
-                alert("update not so successful");
-            })
-            data.$then(function(){
-                $scope.loadPortfolio();
-            })
-        }else{
+
             var data=portfolioUpdateFac.get({portfolioName:$scope.selectedPortfolioName},function(){
                 console.log("update portfolio complete");
             },function(){
@@ -146,8 +147,6 @@ var cntrl1 = traderApp.controller("cntrl1", function ($scope, portfoliosFac, por
             data.$then(function(){
                 $scope.loadPortfolio();
             })
-        }
-
     }
     $scope.loadPortfolio = function () {
         var data = portfolioFac.get({portfolio:$scope.selectedPortfolioName}, function () {
@@ -178,7 +177,7 @@ var cntrl1 = traderApp.controller("cntrl1", function ($scope, portfoliosFac, por
         for(var i=0;i<$scope.strategies.val.length;i++){
             console.log($scope.strategies.val[i])
             if($scope.strategies.val[i].checked==true){
-                token=token+"-"+$scope.strategies.val[i].name;
+                token=token+$scope.strategies.val[i].name+"-";
             }
         }
         console.log($scope.newPortfolioName);
@@ -274,15 +273,23 @@ var cntrl1 = traderApp.controller("cntrl1", function ($scope, portfoliosFac, por
     $scope.setToday=function(){
         console.log("wassa" + $scope.setRoll)
         console.log($scope.today);
-        var data=globalSetTimeFac.get({today:$scope.today},function(){
-            console.log("setting date");
-        },function(){
-            alert("god damn man!")
-        })
-        data.$then(function(){
-            updatePortfolio($scope);
-            getToday($scope);
-        })
+        if($scope.setRoll){
+            rollPortfolio($scope);
+
+        }else{
+            var data=globalSetTimeFac.get({today:$scope.today},function(){
+                console.log("setting date");
+            },function(){
+                alert("god damn man!")
+            })
+            data.$then(function(){
+                if($scope.selectedPortfolioName!=null){
+                    updatePortfolio($scope);
+                }
+                getToday($scope);
+            })
+        }
+
 
     }
 
