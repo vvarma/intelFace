@@ -1,124 +1,204 @@
 <!DOCTYPE html>
-<html lang="en"  ng-app="intel">
+<html ng-app="trader">
 <head>
-    <meta charset="utf-8">
-    <title>Intel Trader</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Shades of gunmetal gray.">
-    <meta name="author" content="Thomas Park">
+    <title>{{ title }}</title>
+    <link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
 
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <!-- angular -->
+    <script src="Scripts/angular.js "></script>
+    <script src="Scripts/angular-resource.js "></script>
+    <!--flot-->
 
-    <link href="layout/css/bootstrap.min.css" rel="stylesheet">
-    <link href="layout/css/bootstrap-responsive.min.css" rel="stylesheet">
-    <link href="layout/css/font-awesome.min.css" rel="stylesheet">
-    <link href="layout/css/bootswatch.css" rel="stylesheet">
+    <script src="flot/jquery.js"></script>
+    <script src="flot/jquery.flot.js"></script>
+    <script src="flot/jquery.flot.time.js"></script>
+    <script src="http://code.highcharts.com/stock/highstock.js"></script>
 
-    <script type="text/javascript">
 
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-23019901-1']);
-        _gaq.push(['_setDomainName', "bootswatch.com"]);
-        _gaq.push(['_setAllowLinker', true]);
-        _gaq.push(['_trackPageview']);
-
-        (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-
-    </script>
-
+    <!--Modules Controllers and Factories-->
+    <script src="Scripts/part/module.js"></script>
 </head>
+<body ng-controller="cntrl1" ng-init="onPageLoad()">
 
-<body class="preview" id="top" data-spy="scroll" data-target=".subnav" data-offset="80" ng-controller="MainController">
-<script src="layout/js/bsa.js"></script>
+<div class="container">
+    <div class="navbar">
+        <a class="navbar-brand" href="#">Intel Trader</a>
+        <div id="date" class="pull-right">
+            <ul class="list-inline">
+                <li><h4>Today : {{ today }}</h4></li>
+                <li><button data-toggle="modal" class="btn btn-primary btn-small" data-target="#setDate" >Set</button></li>
+            </ul>
 
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            <a class="brand" href="#">IntelTrader</a>
-            <div class="nav-collapse collapse" id="main-menu">
-               <ul class="nav pull-right" id="main-menu-right">
-                    <li class="dropdown" id="preview-menu">
-                        <a  class="dropdown-toggle"  data-toggle="dropdown">Portfolio</a>
-                    </li>
-                   <li>
-                        <select class="controls" ng-model="selectPortfolio" ng-options="port for port in portfolios.names" ng-change="getPortfolio()"></select>
-                    </li>
 
-                </ul>
-            </div>
         </div>
     </div>
-</div>
-<div class="container" >
-    <section id="investmentTable" >
-        <div class="page-header">
-            <h1>Investments</h1>
+    <div class="container well ">
+        <div class="col-lg-8">
+            <div class="alert" ng-show="showPortAlert">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Warning!</strong> Please select portfolio first.
+            </div>
+            <h2 class="span3"><a ng-click="showPortfolio()">Portfolio  {{ selectedPortfolio.portfolioName }}</a></h2>
+        </div>
+        <div class="col-lg-2">
+            <h4><label class="label">Select </label>  <select class="form-control   " ng-model="selectedPortfolioName"
+                                           ng-options="portfolio for portfolio in portfolios.names"
+                                           ng-change="loadPortfolio()"></select></h4>
+        </div>
+        <div class="col-lg-2"><br/>
+            <button data-toggle="modal" class="btn btn-primary" data-target="#createPort" >Create</button>
         </div>
 
-        <table class="table table-bordered table-striped table-hover">
+    </div>
+
+    <div class=" panel" ng-show="boolInvestment">
+        <div class="container panel-heading">
+            <h2 class="panel-title col-lg-9">Investments</h2>
+            <button data-toggle="modal" class="btn btn-primary col-lg-3" data-target="#addInvest" >Add Investment</button>
+        </div>
+        <table class="table table-bordered">
             <thead>
             <tr>
                 <th>Symbol Name</th>
-                <th>Current Price</th>
                 <th>Quantity</th>
+                <th>CurrentPrice</th>
+                <th>PnL</th>
+
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="investment in portfolio.investmentList">
-                <td><a href="#" ng-click="plotInvestment(investment)">{{ investment.symbolName }}</a></td>
-                <td>{{ investment.currentPrice.closePrice }}</td>
+            <tr ng-repeat="investment in selectedPortfolio.investmentList">
+                <td><a ng-click="forInvestment(investment.symbolName)">{{ investment.symbolName }}</a></td>
                 <td>{{ investment.quantity }}</td>
+                <td>{{ investment.currentPrice.closePrice }}</td>
+                <td>{{ investment.pnl }}</td>
+
+                </td>
             </tr>
             </tbody>
-        </table>
-    </section>
-    <section id="investmentChart">
-        <div class="page-header">
-            <h1>
-                Chart
-            </h1>
-        </div>
-        <div id="chartContainer">
-            <div id="macdChart">
 
+        </table>
+    </div>
+    <div class="panel" ng-show="boolSymbol">
+        <div class="container panel-heading">
+            <h2 class="panel-title col-lg-9">Symbol : {{ selectedInvestment.symbolName }}</h2>
+            <button class="btn btn-primary col-lg-3" ng-click="plotOrTransactionFn()">{{ plotOrTransaction }}</button>
+        </div>
+        <div id="chartContainer" ng-show="boolPlotOrTransaction">
+            <div id="macdChart" style="width: 1000px;height:400px; text-align: center; margin:0 auto;">
             </div>
         </div>
-    </section>
+        <div id="transactionView" ng-hide="boolPlotOrTransaction">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Transaction Date</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="transaction in selectedInvestment.transactionList">
+                    <td>{{ transaction.transactionDate }}</td>
+                    <td>{{ transaction.quantity }}</td>
+                    <td>{{ transaction.transactionPrice.closePrice }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
 </div>
+<div id="setDate"  class="modal fade" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Set Date</h4>
+            </div>
+            <div class="modal-body">
+                <input type="text" ng-model="todayToSet" datepicker/></p>
+                <label class="label">Roll </label><input type="checkbox" ng-model="setRoll">
+                <div  class="alert alert-success" ng-show="boolSetDateRetSuccess">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Success!</strong>
+                </div>
+                <div  class="alert alert-danger" ng-show="boolSetDateFailure">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Error!</strong> Request Failed
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="setToday()" >Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div id="createPort"  class="modal fade" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Create Portfolio</h4>
+            </div>
+            <div class="modal-body">
+                PortfolioName :<input type="text" ng-model="newPortfolioName">
+                <div  class="alert alert-block" ng-show="boolNoStrategySelected">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Error!</strong> Please Select a Strategy
+                </div>
+                <br>Strategy :
+                <li ng-repeat="strategy in strategies.val">
 
-<!-- Le javascript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="layout/js/jquery.smooth-scroll.min.js"></script>
-<script src="layout/js/bootstrap.min.js"></script>
-<script src="layout/js/bootswatch.js"></script>
-
-<!-- angular -->
-<script src="Scripts/angular.js "></script>
-<script src="Scripts/angular-resource.js "></script>
-
-<!--flot-->
-<script src="flot/jquery.js"></script>
-<script src="flot/jquery.flot.js"></script>
-<script src="flot/jquery.flot.time.js"></script>
-<script src="http://code.highcharts.com/stock/highstock.js"></script>
-<!-- page specific plugin scripts -->
-<script src="Scripts/module.js"></script>
-<script src="Scripts/factories.js"></script>
-<script src="Scripts/controllers2.js"></script>
-
-
+                    <input id="{{ strategy.name }}" type="checkbox"
+                           value="{{ strategy.name }}"
+                           ng-model="strategy.checked"><label for="{{ strategy.name }}">{{ strategy.name }}</label>
+                </li>
+                <div  class="alert alert-success" ng-show="boolCreatePortRetSuccess">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Success!</strong>
+                </div>
+                <div  class="alert alert-danger" ng-show="boolCreatePortRetFailure">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Error!</strong> Request Failed
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="createPortfolio()" >Create</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div id="addInvest"  class="modal fade" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Add Investments to {{ selectedPortfolio.portfolioName }}</h4>
+            </div>
+            <div class="modal-body">
+                Enter Symbol Name :<input type="text" ng-model="symbolName">
+                <div class="alert alert-success" ng-show="boolAddInvestRetSuccess">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Success!</strong>
+                </div>
+                <div class="alert alert-danger" ng-show="boolAddInvestRetFailure">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Error</strong> Request Failed
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="addInvestment()" >Add</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
 </body>
 </html>

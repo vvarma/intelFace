@@ -59,7 +59,7 @@ var cntrl1 = traderApp.controller("cntrl1", function ($scope, portfoliosFac, por
 
     $scope.onPageLoad = function () {
         $scope.title = "INTEL TRADER";
-
+       $scope.showPortAlert=true;
         $scope.boolInvestment = false;
         $scope.boolAddPortfolio = false;
         $scope.boolAddInvestment = false;
@@ -69,6 +69,7 @@ var cntrl1 = traderApp.controller("cntrl1", function ($scope, portfoliosFac, por
         $scope.portfolios = {};
         $scope.selectedPortfolio = {};
         $scope.setRoll=false;
+        $scope.boolSetDate=true;
         listPortfolios($scope);
         getLegalIndicators($scope);
         getToday($scope);
@@ -130,10 +131,13 @@ var cntrl1 = traderApp.controller("cntrl1", function ($scope, portfoliosFac, por
         console.log("Set Roll")
         var data=portfolioRollFac.get({portfolioName:$scope.selectedPortfolioName,rollDate:$scope.today},function(){
             console.log("update portfolio complete");
+            $scope.boolSetTodayRetSuccess=true;
         },function(){
             alert("update not so successful");
+            $scope.boolSetTodayRetFailure=true;
         })
         data.$then(function(){
+            getToday($scope)
             $scope.loadPortfolio();
         })
     }
@@ -149,6 +153,9 @@ var cntrl1 = traderApp.controller("cntrl1", function ($scope, portfoliosFac, por
             })
     }
     $scope.loadPortfolio = function () {
+        if($scope.selectedPortfolioName!=""){
+            $scope.showPortAlert=false;
+        }
         var data = portfolioFac.get({portfolio:$scope.selectedPortfolioName}, function () {
             console.log('success, got data');
         }, function () {
@@ -163,7 +170,12 @@ var cntrl1 = traderApp.controller("cntrl1", function ($scope, portfoliosFac, por
         })
     }
     $scope.showPortfolio = function () {
-        $scope.boolInvestment = !$scope.boolInvestment;
+        if($scope.selectedPortfolioName==""){
+            $("alert1").show();
+        }else{
+            $scope.boolInvestment = !$scope.boolInvestment;
+        }
+
     }
     $scope.showAddPortfolio = function () {
         $scope.boolAddPortfolio = !$scope.boolAddPortfolio;
@@ -173,6 +185,8 @@ var cntrl1 = traderApp.controller("cntrl1", function ($scope, portfoliosFac, por
     }
 
     $scope.createPortfolio=function(){
+        $scope.boolCreatePortRetSuccess=false;
+        $scope.boolCreatePortRetFailure=false;
         var token="";
         for(var i=0;i<$scope.strategies.val.length;i++){
             console.log($scope.strategies.val[i])
@@ -182,22 +196,29 @@ var cntrl1 = traderApp.controller("cntrl1", function ($scope, portfoliosFac, por
         }
         console.log($scope.newPortfolioName);
         if(token==""){
-            alert("please select atleast one strategy")
+            $scope.boolNoStrategySelected=true;
         }else{
             createPortfolioFac.get({portfolio:$scope.newPortfolioName,strategy:token},function () {
-                console.log('success, got data');
+                $scope.boolCreatePortRetSuccess=true;
                 listPortfolios($scope);
                 $scope.selectedPortfolioName=$scope.newPortfolioName;
                 $scope.loadPortfolio();
-            }, function () {
-                alert('request failed');
+            }, function (error) {
+                $scope.boolCreatePortRetFailure=true;
+                console.log(error);
+
             })
+
         }
     }
     $scope.addInvestment=function(){
+        $scope.boolAddInvestRetSuccess=false;
+        $scope.boolAddInvestRetFailure=false;
         var data=addInvestmentFac.get({portfolioName:$scope.selectedPortfolioName,symbolName:$scope.symbolName},function () {
             console.log('success, got data');
+            $scope.boolAddInvestRetSuccess=true;
         }, function () {
+            $scope.boolAddInvestRetFailure=true;
             alert('request failed');
         });
         data.$then(function(){
@@ -266,20 +287,24 @@ var cntrl1 = traderApp.controller("cntrl1", function ($scope, portfoliosFac, por
     $scope.plotOrTransactionFn=function(){
         $scope.boolPlotOrTransaction=!$scope.boolPlotOrTransaction;
         if($scope.boolPlotOrTransaction)
-            $scope.plotOrTransaction="transactions";
+            $scope.plotOrTransaction="Transactions";
         else
-            $scope.plotOrTransaction="plot";
+            $scope.plotOrTransaction="Plot";
     };
     $scope.setToday=function(){
+        $scope.boolSetTodayRetSuccess=false;
+        $scope.boolSetTodayRetFailure=false;
         console.log("wassa" + $scope.setRoll)
-        console.log($scope.today);
+        console.log($scope.todayToSet);
         if($scope.setRoll){
             rollPortfolio($scope);
 
         }else{
-            var data=globalSetTimeFac.get({today:$scope.today},function(){
+            var data=globalSetTimeFac.get({today:$scope.todayToSet},function(){
                 console.log("setting date");
+                $scope.boolSetTodayRetSuccess=true;
             },function(){
+                $scope.boolSetTodayRetFailure=true;
                 alert("god damn man!")
             })
             data.$then(function(){
