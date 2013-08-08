@@ -26,10 +26,13 @@
 <div class="container">
     <div class="navbar">
         <a class="navbar-brand" href="#">Intel Trader</a>
+
         <div id="date" class="pull-right">
             <ul class="list-inline">
                 <li><h4>Today : {{ today }}</h4></li>
-                <li><button data-toggle="modal" class="btn btn-primary btn-small" data-target="#setDate" >Set</button></li>
+                <li>
+                    <button data-toggle="modal" class="btn btn-primary btn-small" data-target="#setDate">Set</button>
+                </li>
             </ul>
 
 
@@ -41,15 +44,23 @@
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>Warning!</strong> Please select portfolio first.
             </div>
-            <h2 class="span3"><a ng-click="showPortfolio()">Portfolio  {{ selectedPortfolio.portfolioName }}</a></h2>
+            <h2 class="span3"><a ng-click="showPortfolio()">Portfolio {{ selectedPortfolio.portfolioName }}</a></h2>
+
+            <div ng-show="boolInvestment">
+                <div class="col-1"><b>Strategy </b>
+                <ul>
+                    <li ng-repeat="strategy in selectedPortfolio.desc">{{ strategy }}</li>
+                </ul>
+                </div>
+            </div>
         </div>
         <div class="col-lg-2">
-            <h4><label class="label">Select </label>  <select class="form-control   " ng-model="selectedPortfolioName"
-                                           ng-options="portfolio for portfolio in portfolios.names"
-                                           ng-change="loadPortfolio()"></select></h4>
+            <h4><label class="label">Select </label> <select class="form-control   " ng-model="selectedPortfolioName"
+                                                             ng-options="portfolio for portfolio in portfolios.names"
+                                                             ng-change="loadPortfolio()"></select></h4>
         </div>
         <div class="col-lg-2"><br/>
-            <button data-toggle="modal" class="btn btn-primary" data-target="#createPort" >Create</button>
+            <button data-toggle="modal" class="btn btn-primary" data-target="#createPort">Create</button>
         </div>
 
     </div>
@@ -57,7 +68,8 @@
     <div class=" panel" ng-show="boolInvestment">
         <div class="container panel-heading">
             <h2 class="panel-title col-lg-9">Investments</h2>
-            <button data-toggle="modal" class="btn btn-primary col-lg-3" data-target="#addInvest" >Add Investment</button>
+            <button data-toggle="modal" class="btn btn-primary col-lg-3" data-target="#addInvest">Add Investment
+            </button>
         </div>
         <table class="table table-bordered">
             <thead>
@@ -81,38 +93,40 @@
             </tbody>
 
         </table>
-    </div>
-    <div class="panel" ng-show="boolSymbol">
-        <div class="container panel-heading">
-            <h2 class="panel-title col-lg-9">Symbol : {{ selectedInvestment.symbolName }}</h2>
-            <button class="btn btn-primary col-lg-3" ng-click="plotOrTransactionFn()">{{ plotOrTransaction }}</button>
-        </div>
-        <div id="chartContainer" ng-show="boolPlotOrTransaction">
-            <div id="macdChart" style="width: 1000px;height:400px; text-align: center; margin:0 auto;">
+        <div class="panel" ng-show="boolSymbol">
+            <div class="container panel-heading">
+                <h2 class="panel-title col-lg-9">Symbol : {{ selectedInvestment.symbolName }}</h2>
+                <button class="btn btn-primary col-lg-3" ng-click="plotOrTransactionFn()">{{ plotOrTransaction }}
+                </button>
             </div>
-        </div>
-        <div id="transactionView" ng-hide="boolPlotOrTransaction">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Transaction Date</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="transaction in selectedInvestment.transactionList">
-                    <td>{{ transaction.transactionDate }}</td>
-                    <td>{{ transaction.quantity }}</td>
-                    <td>{{ transaction.transactionPrice.closePrice }}</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+            <div id="chartContainer" ng-show="boolPlotOrTransaction">
+                <div id="macdChart" style="width: 1000px;height:400px; text-align: center; margin:0 auto;">
+                </div>
+            </div>
+            <div id="transactionView" ng-hide="boolPlotOrTransaction">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Transaction Date</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="transaction in selectedInvestment.transactionList">
+                        <td>{{ transaction.transactionDate }}</td>
+                        <td>{{ transaction.quantity }}</td>
+                        <td>{{ transaction.transactionPrice.closePrice }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
+        </div>
     </div>
+
 </div>
-<div id="setDate"  class="modal fade" >
+<div id="setDate" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -122,23 +136,27 @@
             <div class="modal-body">
                 <input type="text" ng-model="todayToSet" datepicker/></p>
                 <label class="label">Roll </label><input type="checkbox" ng-model="setRoll">
-                <div  class="alert alert-success" ng-show="boolSetDateRetSuccess">
+
+                <div class="alert alert-success" ng-show="boolSetDateRetSuccess">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                     <strong>Success!</strong>
                 </div>
-                <div  class="alert alert-danger" ng-show="boolSetDateFailure">
+                <div class="alert alert-danger" ng-show="boolSetDateFailure">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                     <strong>Error!</strong> Request Failed
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" ng-click="setToday()" >Save changes</button>
+                <button type="button" class="btn btn-primary" ng-click="setToday()">Save changes</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<div id="createPort"  class="modal fade" >
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<div id="createPort" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -147,7 +165,8 @@
             </div>
             <div class="modal-body">
                 PortfolioName :<input type="text" ng-model="newPortfolioName">
-                <div  class="alert alert-block" ng-show="boolNoStrategySelected">
+
+                <div class="alert alert-block" ng-show="boolNoStrategySelected">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                     <strong>Error!</strong> Please Select a Strategy
                 </div>
@@ -158,23 +177,26 @@
                            value="{{ strategy.name }}"
                            ng-model="strategy.checked"><label for="{{ strategy.name }}">{{ strategy.name }}</label>
                 </li>
-                <div  class="alert alert-success" ng-show="boolCreatePortRetSuccess">
+                <div class="alert alert-success" ng-show="boolCreatePortRetSuccess">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                     <strong>Success!</strong>
                 </div>
-                <div  class="alert alert-danger" ng-show="boolCreatePortRetFailure">
+                <div class="alert alert-danger" ng-show="boolCreatePortRetFailure">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                     <strong>Error!</strong> Request Failed
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" ng-click="createPortfolio()" >Create</button>
+                <button type="button" class="btn btn-primary" ng-click="createPortfolio()">Create</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<div id="addInvest"  class="modal fade" >
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<div id="addInvest" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -183,6 +205,7 @@
             </div>
             <div class="modal-body">
                 Enter Symbol Name :<input type="text" ng-model="symbolName">
+
                 <div class="alert alert-success" ng-show="boolAddInvestRetSuccess">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                     <strong>Success!</strong>
@@ -194,11 +217,14 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" ng-click="addInvestment()" >Add</button>
+                <button type="button" class="btn btn-primary" ng-click="addInvestment()">Add</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
 </body>
 </html>

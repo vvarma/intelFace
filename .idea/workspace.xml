@@ -4,11 +4,11 @@
     <list default="true" id="fdba6d80-d2a6-4144-a4b9-bdec5fe590e7" name="Default" comment="" />
     <ignored path="intelFace.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="fdba6d80-d2a6-4144-a4b9-bdec5fe590e7" time="1369070842890" ignored="false" />
-    <file path="/index.html" changelist="fdba6d80-d2a6-4144-a4b9-bdec5fe590e7" time="1369671379493" ignored="false" />
-    <file path="/chartExample.html" changelist="fdba6d80-d2a6-4144-a4b9-bdec5fe590e7" time="1369072351047" ignored="false" />
-    <file path="/directive.js" changelist="fdba6d80-d2a6-4144-a4b9-bdec5fe590e7" time="1369072900492" ignored="false" />
     <file path="/controllers.js" changelist="fdba6d80-d2a6-4144-a4b9-bdec5fe590e7" time="1369676321670" ignored="false" />
+    <file path="/directive.js" changelist="fdba6d80-d2a6-4144-a4b9-bdec5fe590e7" time="1369072900492" ignored="false" />
+    <file path="/chartExample.html" changelist="fdba6d80-d2a6-4144-a4b9-bdec5fe590e7" time="1369072351047" ignored="false" />
+    <file path="/index.html" changelist="fdba6d80-d2a6-4144-a4b9-bdec5fe590e7" time="1369671379493" ignored="false" />
+    <file path="/Dummy.txt" changelist="fdba6d80-d2a6-4144-a4b9-bdec5fe590e7" time="1369070842890" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,19 +37,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="87" column="106" selection-start="3600" selection-end="3617" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="53" column="21" selection-start="2062" selection-end="2062" vertical-scroll-proportion="0.5776699">
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="module.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="module.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Scripts/part/module.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="82" selection-start="2475" selection-end="2475" vertical-scroll-proportion="0.61648744">
+            <state line="55" column="82" selection-start="2475" selection-end="2475" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -79,8 +81,8 @@
         <option value="$PROJECT_DIR$/trial.html" />
         <option value="$PROJECT_DIR$/app/trial.html" />
         <option value="$PROJECT_DIR$/app/intel.html" />
-        <option value="$PROJECT_DIR$/app/index.html" />
         <option value="$PROJECT_DIR$/app/Scripts/part/module.js" />
+        <option value="$PROJECT_DIR$/app/index.html" />
       </list>
     </option>
   </component>
@@ -141,6 +143,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -255,7 +258,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -265,8 +267,8 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FullScreen" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -406,7 +408,9 @@
     <entry file="file://$PROJECT_DIR$/app/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="87" column="106" selection-start="3600" selection-end="3617" vertical-scroll-proportion="0.0">
-          <folding />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -469,13 +473,6 @@
         <state line="29" column="67" selection-start="1502" selection-end="1502" vertical-scroll-proportion="0.6078915" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="106" selection-start="3600" selection-end="3617" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/intel.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="102" column="26" selection-start="3534" selection-end="3534" vertical-scroll-proportion="0.0">
@@ -485,8 +482,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Scripts/part/module.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="82" selection-start="2475" selection-end="2475" vertical-scroll-proportion="0.61648744">
+        <state line="55" column="82" selection-start="2475" selection-end="2475" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="21" selection-start="2062" selection-end="2062" vertical-scroll-proportion="0.5776699">
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
