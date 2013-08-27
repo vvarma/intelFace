@@ -1,0 +1,27 @@
+{
+    "name": "intelface",
+    "preferGlobal": false,
+    "version": "0.1.0",
+    "author": "vvarma <vin1990@gmail.com>",
+    "description": "the front end to Intel Trader",
+    "contributors": [
+        {
+            "name": "Vinay Varma",
+            "email": "vin1990@gmail.com"
+        }
+    ],
+    "bin": {
+        "http-server": "./web-server"
+    },
+    "scripts": {
+        "start": "node ./web-server",
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/vvarma/intelFace.git"
+    },
+    "license": "MIT",
+    "engines": {
+        "node": ">=0.6"
+    }
+}

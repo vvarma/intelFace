@@ -335,7 +335,7 @@ var dataPrep = function ($scope) {
     //endDate.setFullYear(startDate.getFullYear(),startDate.getMonth(),startDate.getDate()+3);
     var charted = [];
     var i = 0;
-    for (date = new Date(startDate.getTime()); date < endDate; date.setDate(date.getDate() + 1)) {
+    for (var date = new Date(startDate.getTime()); date < endDate; date.setDate(date.getDate() + 1)) {
         // console.log("start date "+ date )
         var dateTemp = Date.parse($scope.instrumentData.priceList[i].timeStamp);
         if (dateTemp.valueOf() == date.valueOf()) {
