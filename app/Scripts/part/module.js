@@ -26,34 +26,34 @@ var traderApp = angular.module("trader", ['ngResource']).
 ;
 
 traderApp.factory("portfoliosFac", function ($resource) {
-    return $resource('http://localhost\\:8080/intelTrader-1.0-SNAPSHOT/portfolio/listAll');
+    return $resource('http://inteltrader.vvarma.cloudbees.net/portfolio/listAll');
 });
 traderApp.factory("portfolioFac", function ($resource) {
-    return $resource('http://localhost\\:8080/intelTrader-1.0-SNAPSHOT/portfolio/load/:portfolio');
+    return $resource('http://inteltrader.vvarma.cloudbees.net/portfolio/load/:portfolio');
 });
 traderApp.factory("createPortfolioFac", function ($resource) {
-    return $resource('http://localhost\\:8080/intelTrader-1.0-SNAPSHOT/portfolio/create/:portfolio/:strategy/:strategyArr');
+    return $resource('http://inteltrader.vvarma.cloudbees.net/portfolio/create/:portfolio/:strategy/:strategyArr');
 });
 traderApp.factory("legalIndicatorsFac", function ($resource) {
-    return $resource('http://localhost\\:8080/intelTrader-1.0-SNAPSHOT/analyser/legalIndicators');
+    return $resource('http://inteltrader.vvarma.cloudbees.net/analyser/legalIndicators');
 });
 traderApp.factory("addInvestmentFac", function ($resource) {
-    return $resource('http://localhost\\:8080/intelTrader-1.0-SNAPSHOT/portfolio/addInvestment/:portfolioName/:symbolName');
+    return $resource('http://inteltrader.vvarma.cloudbees.net/portfolio/addInvestment/:portfolioName/:symbolName');
 });
 traderApp.factory("instrumentFac", function ($resource) {
-    return $resource('http://localhost\\:8080/intelTrader-1.0-SNAPSHOT/analyser/load/:symbol');
+    return $resource('http://inteltrader.vvarma.cloudbees.net/analyser/load/:symbol');
 });
 traderApp.factory("globalGetTimeFac", function ($resource) {
-    return $resource('http://localhost\\:8080/intelTrader-1.0-SNAPSHOT/global/getTime');
+    return $resource('http://inteltrader.vvarma.cloudbees.net/global/getTime');
 });
 traderApp.factory("globalSetTimeFac", function ($resource) {
-    return $resource('http://localhost\\:8080/intelTrader-1.0-SNAPSHOT/global/setTime/:today');
+    return $resource('http://inteltrader.vvarma.cloudbees.net/global/setTime/:today');
 });
 traderApp.factory("portfolioUpdateFac", function ($resource) {
-    return $resource('http://localhost\\:8080/intelTrader-1.0-SNAPSHOT/portfolio/updatePortfolio/:portfolioName');
+    return $resource('http://inteltrader.vvarma.cloudbees.net/portfolio/updatePortfolio/:portfolioName');
 });
 traderApp.factory("portfolioRollFac", function ($resource) {
-    return $resource('http://localhost\\:8080/intelTrader-1.0-SNAPSHOT/global/roll/:rollDate');
+    return $resource('http://inteltrader.vvarma.cloudbees.net/global/roll/:rollDate');
 });
 
 var cntrl1 = traderApp.controller("cntrl1", function ($scope, portfoliosFac, portfolioFac, createPortfolioFac, legalIndicatorsFac, addInvestmentFac, instrumentFac, globalGetTimeFac, globalSetTimeFac, portfolioUpdateFac, portfolioRollFac) {
