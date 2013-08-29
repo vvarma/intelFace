@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app="trader">
+<head>
+    <title>{{ title }}</title>
+    <link href="app/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="app/dist/css/bootstrap-theme.css" rel="stylesheet">
+    <link rel="stylesheet" href="app/Scripts/jquery-ui.css"/>
+
+    <script src="app/Scripts/jquery.js"></script>
+    <script src="app/Scripts/jquery-ui.js"></script>
+    <!-- angular -->
+    <script src="app/Scripts/angular.js "></script>
+    <script src="app/Scripts/angular-resource.js "></script>
+
+
+
+    <!--Modules Controllers and Factories-->
+    <script src="app/Scripts/part/module.js"></script>
+
+
+</head>
+<body  ng-controller="cntrl1">
+<a class="sr-only" href="#content">Skip navigation</a>
+<header class="navbar navbar-inverse navbar-fixed-top " role="banner">
+   <div class="container">
+       <div class="navbar-header">
+           <a class="navbar-brand" href="#">Intel Trader</a>
+       </div>
+       <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+           <ul class="nav navbar-nav">
+               <li class="active">
+                   <a href="#about">About</a>
+               </li>
+               <li>
+                   <a href="#index">Trader</a>
+               </li>
+           </ul>
+           <ul class="nav pull-right">
+               <li>
+                   <div class="btn-group">
+                       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                           <span class="glyphicon glyphicon-wrench"></span> Settings  <span class="caret"></span>
+                       </button>
+                       <ul class="dropdown-menu" role="menu">
+                           <li><a href="#">Set Date</a></li>
+                           <li><a href="#">Brokerage</a></li>
+                           <!--<li class="divider"></li>
+                           <li><a href="#">Separated link</a></li>-->
+                       </ul>
+                   </div>
+               </li>
+           </ul>
+       </nav>
+
+   </div>
+
+</header>
+<footer class="navbar navbar-inverse navbar-fixed-bottom" role="banner">
+
+</footer>
+<script src="app/dist/js/bootstrap.js"></script>
+</body>
+</html>
