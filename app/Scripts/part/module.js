@@ -157,7 +157,10 @@ var cntrl1 = traderApp.controller("cntrl1", function ($scope, portfoliosFac, por
             $scope.loadPortfolio();
         })
     }
-
+    $scope.setSelectorDate=function(){
+        console.log("setting selector to "+ $scope.today);
+        $("#selector").datepicker("setDate",$scope.today);
+    }
     $scope.loadPortfolio = function () {
         if ($scope.selectedPortfolioName != "") {
             $scope.showPortAlert = false;

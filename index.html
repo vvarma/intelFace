@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html ng-app="trader">
 <head>
-    <title>{{ title }}</title>
+    <title>Intel Trader</title>
     <link type="text/css" rel="stylesheet" href="app/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="app/Scripts/jquery-ui.css"/>
 
     <script src="app/Scripts/jquery.js"></script>
     <script src="app/Scripts/jquery-ui.js"></script>
+
     <!-- angular -->
     <script src="app/Scripts/angular.js "></script>
     <script src="app/Scripts/angular-resource.js "></script>
-    <!--flot-->
 
-    <script src="app/flot/jquery.js"></script>
+    <!--flot-->
     <script src="app/flot/jquery.flot.js"></script>
     <script src="app/flot/jquery.flot.time.js"></script>
     <script src="app/Scripts/highStock.js"></script>
 
-
     <!--Modules Controllers and Factories-->
     <script src="app/Scripts/part/module.js"></script>
+
 </head>
 <body ng-controller="cntrl1" ng-init="onPageLoad()">
 
@@ -31,11 +31,9 @@
             <ul class="list-inline">
                 <li><h4>Today : {{ today }}</h4></li>
                 <li>
-                    <button data-toggle="modal" class="btn btn-primary btn-small" data-target="#setDate">Set</button>
+                    <button data-toggle="modal" class="btn btn-primary btn-small" ng-click="setSelectorDate()" data-target="#setDate">Set</button>
                 </li>
             </ul>
-
-
         </div>
     </div>
     <div class="container well ">
@@ -45,7 +43,6 @@
                 <strong>Warning!</strong> Please select portfolio first.
             </div>
             <h2 class="span3"><a ng-click="showPortfolio()">Portfolio {{ selectedPortfolio.portfolioName }}</a></h2>
-
             <div ng-show="boolInvestment">
                 <div class="col-1"><b>Strategy </b>
                 <ul>
@@ -62,9 +59,7 @@
         <div class="col-lg-2"><br/>
             <button data-toggle="modal" class="btn btn-primary" data-target="#createPort">Create</button>
         </div>
-
     </div>
-
     <div class=" panel" ng-show="boolInvestment">
         <div class="container panel-heading">
             <h2 class="panel-title col-lg-9">Investments</h2>
@@ -78,7 +73,6 @@
                 <th>Quantity</th>
                 <th>CurrentPrice</th>
                 <th>PnL</th>
-
             </tr>
             </thead>
             <tbody>
@@ -87,11 +81,9 @@
                 <td>{{ investment.quantity }}</td>
                 <td>{{ investment.currentPrice.closePrice }}</td>
                 <td>{{ investment.pnl }}</td>
-
                 </td>
             </tr>
             </tbody>
-
         </table>
         <div class="panel" ng-show="boolSymbol">
             <div class="container panel-heading">
@@ -121,10 +113,8 @@
                     </tbody>
                 </table>
             </div>
-
         </div>
     </div>
-
 </div>
 <div id="setDate" class="modal fade">
     <div class="modal-dialog">
@@ -134,9 +124,8 @@
                 <h4 class="modal-title">Set Date</h4>
             </div>
             <div class="modal-body">
-                <input type="text" ng-model="todayToSet" datepicker/></p>
+                <input id="selector" type="text" ng-model="todayToSet" datepicker /></p>
                 <label class="label">Roll </label><input type="checkbox" ng-model="setRoll">
-
                 <div class="alert alert-success" ng-show="boolSetDateRetSuccess">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                     <strong>Success!</strong>
@@ -151,11 +140,8 @@
                 <button type="button" class="btn btn-primary" ng-click="setToday()">Save changes</button>
             </div>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
-<!-- /.modal -->
 <div id="createPort" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">

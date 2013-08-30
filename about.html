@@ -4,6 +4,7 @@
     <title>{{ title }}</title>
     <link href="app/dist/css/bootstrap.css" rel="stylesheet">
     <link href="app/dist/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="app/asset/css/docs.css" rel="stylesheet">
     <link rel="stylesheet" href="app/Scripts/jquery-ui.css"/>
 
     <script src="app/Scripts/jquery.js"></script>
@@ -13,47 +14,126 @@
     <script src="app/Scripts/angular-resource.js "></script>
 
 
-
     <!--Modules Controllers and Factories-->
     <script src="app/Scripts/part/module.js"></script>
 
 
 </head>
-<body  ng-controller="cntrl1">
+<body ng-controller="cntrl1">
 <a class="sr-only" href="#content">Skip navigation</a>
 <header class="navbar navbar-inverse navbar-fixed-top " role="banner">
-   <div class="container">
-       <div class="navbar-header">
-           <a class="navbar-brand" href="#">Intel Trader</a>
-       </div>
-       <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-           <ul class="nav navbar-nav">
-               <li class="active">
-                   <a href="#about">About</a>
-               </li>
-               <li>
-                   <a href="#index">Trader</a>
-               </li>
-           </ul>
-           <ul class="nav navbar-nav pull-right">
-               <li>
-                       <a  href="#" data-toggle="dropdown">
-                           Settings <span class="glyphicon glyphicon-wrench"></span>  
-                       </a>
-                       <ul class="dropdown-menu" role="menu">
-                           <li><a href="#">Set Date</a></li>
-                           <li><a href="#">Brokerage</a></li>
-                           <li class="divider"></li>
-                      </ul>
-               </li>
-           </ul>
-       </nav>
-   </div>
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Intel Trader</a>
+        </div>
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="#about">About</a>
+                </li>
+                <li>
+                    <a href="#index">Trader</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+                <li>
+                    <a href="#" data-toggle="dropdown">
+                        Settings <span class="glyphicon glyphicon-wrench"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Set Date</a></li>
+                        <li><a href="#">Brokerage</a></li>
+                        <li class="divider"></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
 </header>
 
-<footer class="navbar navbar-inverse navbar-fixed-bottom" role="banner">
+<div class="jumbotron">
+    <div class="container">
+        <h1>Intel Trader v0.1</h1>
 
-</footer>
+        <p>Automate money making.</p>
+    </div>
+</div>
+
+
+<div class="container well">
+    <h2 id="idea">The Idea.</h2>
+    <p>There are over 500 securities (a.k.a stocks) registered in the National Stock Exchange (NSE India).
+        An everyday trader is forced to make his own list of securities he must keep an eye on. Some rely on
+        the "bluechips" a term used to describe those securities which have a record of having a clean slate. Dependable.
+        But given that everyone is keeping an eye on this list its very hard to make any real money trading these.</p>
+    <p>Now imagine a scenario where someone else takes the pains, applies all kinds of mathematics and statistics and gives
+        you a list of, shall we call it, "the best bets". Will this make your trading life a bit easier?</p>
+    <p>Interested? Read on..</p>
+    <h2 id="tools">A trader's toolkit.</h2>
+    <p>
+        So I am new to trading. How do I go from an amateur trader to a professional? Accessorize!
+    </p>
+    <p>
+        A professional trader assesses his stocks on a number of parameters. If he is looking for a long term investment,
+        a new start-up maybe or a new business unit of some already established company he will go through the balance sheets
+        of the company. The balance sheet sums up the Assets, the Liabilities and the Cashflow of a company thus giving him,
+        the prudent investor an idea of the company's future in the coming months. Such an analysis is called Fundamental Analysis.
+
+    </p>
+    <p>
+        Another kind of trader exists in this universe. One who believes that it doesnt matter how well a company is actually doing.
+        The only thing that actually matters is market sentiment. He believes that if everyone thinks the price is going to go up, it will!
+        This kind of traders use various statistical tools to study price movement, volume fluctuation and volatility in the market to assess
+        if the price will rise or fall. This kind of analysis which involves historical prices and their analysis is termed Technical Analysis.
+    </p>
+    <p>
+        <a href="http://www.investopedia.com/university/fundamentalanalysis/">Investopedia</a> does a much better job of explaining this.
+    </p>
+
+    <h2 id="mLearn">Machine Learning and How.</h2>
+    <br/><br/><br/><br/><br/><br/>
+
+    <p></p>
+
+    <h2 id="futTrad">The Future.</h2>
+    <br/><br/><br/><br/><br/><br/>
+
+    <p></p>
+
+    <h2 id="fBack">Feedback!</h2>
+
+    <p>Your feedback is very important. Please take time to drop a mail at vin1990@gmail.com. </p>
+    <br>
+    <br>
+    <br>
+</div>
+
+
+<!--<ul class="nav bs-sidenav">
+    <li><a href="#idea">The Idea</a> </li>
+    <li><a href="#tools">A Trader's Toolkit</a> </li>
+    <li><a href="#mLearning">Machine Learning</a> </li>
+    <li><a href="#traderFuture">The Future</a> </li>
+    <li><a href="#fBack">Feedback!</a> </li>
+</ul>-->
+<!--
+<li class="dropdown">
+                        <a href="#" id="navbarDrop1" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b
+                                class="caret"></b></a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="navbarDrop1">
+                            <li class=""><a href="#one" tabindex="-1">one</a></li>
+                            <li class=""><a href="#two" tabindex="-1">two</a></li>
+                            <li class="divider"></li>
+                            <li class=""><a href="#three" tabindex="-1">three</a></li>
+                        </ul>
+                    </li>
+>-->
+
+    <footer class="navbar navbar-inverse navbar-fixed-bottom" role="banner">
+
+    </footer>
+
+
 <script src="app/dist/js/bootstrap.js"></script>
 </body>
 </html>
